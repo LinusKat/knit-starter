@@ -1,10 +1,8 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+local Loader = require(ReplicatedStorage.Packages.loader)
 local Knit = require(ReplicatedStorage.Packages.Knit)
-local Loader = require(ReplicatedStorage.Packages.Loader)
 
-Loader.LoadDescendants(script.Parent.Controllers, Loader.MatchesName("Controller$"))
+Loader.LoadDescendants(script.Parent.Controllers, Loader.MatchesName("Service$"))
 
-Knit.Start():andThen(function()
-    print("Knit started on client!")
-end):catch(warn)
+Knit.Start():catch(warn):await()
